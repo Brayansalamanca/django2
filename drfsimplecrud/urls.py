@@ -1,12 +1,13 @@
 from django.contrib import admin
 from django.urls import path, include
-from rest_framework import routers
-from projects.api import ProjectViewSet  # importamos tu ViewSet desde projects/api.py
+from rest_framework.routers import DefaultRouter
+from projects.api import ProjectViewSet
 
-router = routers.DefaultRouter()
-router.register(r'projects', ProjectViewSet, basename='project')
+# Creamos el router y registramos los endpoints
+router = DefaultRouter()
+router.register(r'projects', ProjectViewSet, basename='projects')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include(router.urls)),  # todos los endpoints de la API van aquí
+    path('api/', include(router.urls)),  # Esto hace que /api/ funcione como API Root
 ]
