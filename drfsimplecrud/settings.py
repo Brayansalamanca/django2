@@ -11,7 +11,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-7nt8#brsk2_k8ex424_b!&64nz1jfcc9kasc^wc+4^ep-0ndtj'
 
-
+# DEBUG = True para desarrollo; en producción poner False
+DEBUG = True
 
 # Hosts permitidos
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'django2-xo79.onrender.com']
@@ -24,7 +25,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # DRF
     'rest_framework',
+
+    # Tus apps
     'projects',
 ]
 
@@ -43,10 +48,11 @@ ROOT_URLCONF = 'drfsimplecrud.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [],  # aquí puedes agregar templates propios
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
@@ -79,9 +85,24 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
-# Static files (CSS, JavaScript, Images)
+# Static files
 STATIC_URL = '/static/'
+
+# Carpeta donde se recopilan los archivos estáticos para producción
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# Archivos estáticos adicionales (opcional)
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'projects', 'static'),  # si tienes CSS/JS propio
+]
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Configuración opcional de DRF para la browsable API
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',  # siempre JSON
+        'rest_framework.renderers.BrowsableAPIRenderer',  # interfaz web
+    ]
+}
