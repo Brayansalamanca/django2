@@ -11,8 +11,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-7nt8#brsk2_k8ex424_b!&64nz1jfcc9kasc^wc+4^ep-0ndtj'
 
-# SECURITY WARNING: turn off debug in production!
-DEBUG = False
+
 
 # Hosts permitidos
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'django2-xo79.onrender.com']
