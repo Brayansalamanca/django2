@@ -2,5 +2,6 @@ services:
   - type: web
     name: django2
     env: python
-    buildCommand: "pip install -r requirements.txt && python manage.py makemigrations --noinput && python manage.py migrate --noinput"
-    startCommand: "gunicorn drfsimplecrud.wsgi:application --bind 0.0.0.0:$PORT"
+    buildCommand: "pip install -r requirements.txt && python manage.py makemigrations && python manage.py migrate"
+    startCommand: "gunicorn django2.wsgi:application --bind 0.0.0.0:$PORT"
+
