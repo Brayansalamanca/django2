@@ -3,10 +3,19 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from projects.api import ProjectViewSet
 
+# Router para DRF
 router = DefaultRouter()
 router.register(r'projects', ProjectViewSet, basename='projects')
 
+# URLs principales
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
 ]
+
+# 👇 Esto permite que los archivos estáticos (como los CSS/JS de DRF) se sirvan en modo DEBUG
+from django.conf import settings
+from django.conf.urls.static import static
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
