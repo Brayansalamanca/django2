@@ -44,7 +44,7 @@ INSTALLED_APPS = [
 
     # Tus apps
     "projects",
-    "blog",   # <--- 🚀 añade esta línea
+    "blog",
 ]
 
 MIDDLEWARE = [
@@ -70,7 +70,7 @@ ROOT_URLCONF = "drfsimplecrud.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],  # aquí puedes agregar templates propios
+        "DIRS": [],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -115,7 +115,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 # Archivos estáticos adicionales (opcional)
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "projects", "static"),  # si tienes CSS/JS propio
+    os.path.join(BASE_DIR, "projects", "static"),
 ]
 
 # Whitenoise compresión en producción
@@ -125,20 +125,17 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Configuración de Django Rest Framework
-# Configuración de Django Rest Framework
+# FORZAR interfaz HTML en AMBOS entornos
 REST_FRAMEWORK = {
     "DEFAULT_RENDERER_CLASSES": [
-        "rest_framework.renderers.BrowsableAPIRenderer",
-        "rest_framework.renderers.JSONRenderer",
+        "rest_framework.renderers.BrowsableAPIRenderer",  # Interfaz HTML
+        "rest_framework.renderers.JSONRenderer",          # JSON puro
+    ],
+    # Esto permite que la interfaz HTML funcione incluso en producción
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.AllowAny",
     ]
 }
 
-
-
 # CORS configuración
-CORS_ALLOW_ALL_ORIGINS = True  
-# CORS_ALLOWED_ORIGINS = [
-#     "http://localhost:3000",
-#     "http://127.0.0.1:3000",
-#     "https://tu-frontend.com",
-# ]
+CORS_ALLOW_ALL_ORIGINS = True
