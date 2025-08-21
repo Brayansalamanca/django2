@@ -125,10 +125,10 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Configuración de Django Rest Framework
+# Configuración de Django Rest Framework
 REST_FRAMEWORK = {
     "DEFAULT_RENDERER_CLASSES": [
-        "rest_framework.renderers.JSONRenderer",  # siempre JSON
-        "rest_framework.renderers.BrowsableAPIRenderer",  # interfaz web
+        "rest_framework.renderers.BrowsableAPIRenderer",  # 🚀 solo interfaz web con estilos
     ]
 }
 
