@@ -44,6 +44,7 @@ INSTALLED_APPS = [
 
     # Tus apps
     "projects",
+    "blog",   # <--- 🚀 añade esta línea
 ]
 
 MIDDLEWARE = [
