@@ -10,8 +10,8 @@ router.register(r'projects', ProjectViewSet, basename='projects')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include(router.urls)),
-    path("api/", include("blog.urls")),  
+    path('api/projects/', include(router.urls)),      # Projects en /api/projects/
+    path("api/blog/", include("blog.urls")),          # Blog en /api/blog/
 ]
 
 
